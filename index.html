@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- offline bootstrap -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+
+    <!-- google fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet"> 
+
+    <!-- fontawesome CDN -->
+    <script src="https://kit.fontawesome.com/3cfce5432c.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <title>spotify-Web player</title>
+  </head>
+  <body>
+  
+  <!-- player section -->
+
+
+    <nav class="row navbar fixed-bottom navbar-light bg-light align-items-center player disp-none">
+      <div class="col row align-items-center">
+        <!-- <div class="row align-items-center"> -->
+          <div class="col"><img class="card-img" src="assets/spectre.png" alt="Card image cap"></div>
+          <div class="col-9 row">
+            <span class="col-9">
+              <div style="font-size: small;">The Spectre</div>
+              <div style="font-size: x-small; font-weight: 200 !important;">Alan Walker<span></span></div>
+            </span>
+            <span style="color: #1DB954;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+              <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+            </svg></span>
+          </div>
+        <!-- </div> -->
+      </div>
+      <div class="col-7">
+        <div class="row align-items-center justify-content-center">
+          <div class="step">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><defs></defs><g id="Navigation---v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="player-states" transform="translate(-1355.000000, -278.000000)" fill="#FFFFFF"><g id="Now-Playing---Track" transform="translate(0.000000, 199.000000)"><g id="component/darkui/player-v2-copy-4" transform="translate(0.000000, 54.000000)"><g id="Player---v2"><g id="More-Controls" transform="translate(1324.000000, 25.000000)"><g id="icon/shuffle" transform="translate(31.000000, 0.000000)"><path class="fill_path" d="M10.5937499,9.40725781 L9.18749973,10.768145 L4,5.747984 L5.40625013,4.38709677 L10.5937499,9.40725781 Z M14.5,4.38709677 L20,4.38709677 L20,9.70967742 L18,7.77419355 L5.40625013,19.8709677 L4,18.5100805 L16.5,6.32258065 L14.5,4.38709677 Z M14.8125003,13.4899195 L18,16.3931453 L20,14.4576614 L20,19.7802421 L14.5,19.7802421 L16.5,17.8447582 L13.4062501,14.8508067 L14.8125003,13.4899195 Z" id="Shape"></path></g></g></g></g></g></g></g></svg>
+          </div>
+          <div class="step"><i class="fas fa-step-backward"></i></div>
+          <div class="step"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
+          </svg></div>
+          <div class="step"><i class="fas fa-step-forward"></i></div>
+          <div class="step"><svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M17,17H7V14L3,18L7,22V19H19V13H17M7,7H17V10L21,6L17,2V5H5V11H7V7Z" />
+        </svg></div>
+        </div>
+        <div class="row justify-content-center" style="margin-top: -1rem;">
+          <progress class="prg" id='progress-bar' min='0' max='100' value='60'>0% played</progress>
+        </div>
+      </div>
+      <div class="col row align-items-center">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-2 step">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+              <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+              <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+              <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>
+            </svg>
+          </div>
+          <div class="col-9" style="margin-bottom: 1.5rem;">
+            <progress class="prg" id='progress-bar' min='0' max='100' value='60'>0% played</progress>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="row navbar fixed-bottom navbar-light bg-light align-items-center remove bott">
+      <div class="row">
+        <div class="col">
+          <a class="nav-link active" href="#"><i class="fab fa-spotify fa-2x"></i></a>
+        </div>
+        <div class="col">
+          <a class="nav-link active" href="#"><svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M448 463.746h-149.333v-149.333h-85.334v149.333h-149.333v-315.428l192-111.746 192 110.984v316.19z" fill="currentColor"></path></svg></a>
+        </div>
+        <div class="col">
+          <a class="nav-link active" href="#"><svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M349.714 347.937l93.714 109.969-16.254 13.969-93.969-109.969q-48.508 36.825-109.207 36.825-36.826 0-70.476-14.349t-57.905-38.603-38.603-57.905-14.349-70.476 14.349-70.476 38.603-57.905 57.905-38.603 70.476-14.349 70.476 14.349 57.905 38.603 38.603 57.905 14.349 70.476q0 37.841-14.73 71.619t-40.889 58.921zM224 377.397q43.428 0 80.254-21.461t58.286-58.286 21.461-80.254-21.461-80.254-58.286-58.285-80.254-21.46-80.254 21.46-58.285 58.285-21.46 80.254 21.46 80.254 58.285 58.286 80.254 21.461z" fill="currentColor" fill-rule="evenodd"></path></svg></a>
+        </div>
+        <div class="col">
+          <a class="nav-link active" href="#"><svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M291.301 81.778l166.349 373.587-19.301 8.635-166.349-373.587zM64 463.746v-384h21.334v384h-21.334zM192 463.746v-384h21.334v384h-21.334z" fill="currentColor"></path></svg></a>
+        </div>
+      </div>
+    </nav>
+    <main class="row">
+
+      <!-- sidebar -->
+      <div class="col-lg-2 col-md-6 sidebar sticky-top disp-none">
+        <div class="logo "></div>
+        <div class="nav flex-column">
+          <a href="#" class="badge badge-secondary active"><svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M448 463.746h-149.333v-149.333h-85.334v149.333h-149.333v-315.428l192-111.746 192 110.984v316.19z" fill="currentColor"></path></svg>&nbsp;&nbsp; Home</a>
+          <a href="#" class="badge badge-secondary"><svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M349.714 347.937l93.714 109.969-16.254 13.969-93.969-109.969q-48.508 36.825-109.207 36.825-36.826 0-70.476-14.349t-57.905-38.603-38.603-57.905-14.349-70.476 14.349-70.476 38.603-57.905 57.905-38.603 70.476-14.349 70.476 14.349 57.905 38.603 38.603 57.905 14.349 70.476q0 37.841-14.73 71.619t-40.889 58.921zM224 377.397q43.428 0 80.254-21.461t58.286-58.286 21.461-80.254-21.461-80.254-58.286-58.285-80.254-21.46-80.254 21.46-58.285 58.285-21.46 80.254 21.46 80.254 58.285 58.286 80.254 21.461z" fill="currentColor" fill-rule="evenodd"></path></svg>&nbsp;&nbsp; Search</a>
+          <a href="#" class="badge badge-secondary"><svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M291.301 81.778l166.349 373.587-19.301 8.635-166.349-373.587zM64 463.746v-384h21.334v384h-21.334zM192 463.746v-384h21.334v384h-21.334z" fill="currentColor"></path></svg>&nbsp;&nbsp; Library</a>
+        </div>
+        <div class="sidelink">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp; Create Playlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+                <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+              </svg>&nbsp;&nbsp; Liked Songs</a>
+            </li>
+          </ul>
+          <ul class="nav flex-column" style="border-top: 0.01rem solid white; margin-top: 1rem; margin-left: -1rem;">
+            <li class="nav-item">
+              <a class="nav-link title2" href="#">Alone With Rosh</a>
+            </li><li class="nav-item">
+              <a class="nav-link title2" href="#">Bollywood Fav</a>
+            </li><li class="nav-item">
+              <a class="nav-link title2" href="#">Buzz With Me</a>
+            </li><li class="nav-item">
+              <a class="nav-link title2" href="#">Dance With Me</a>
+            </li><li class="nav-item">
+              <a class="nav-link title2" href="#">Wedding Beats</a>
+            </li><li class="nav-item">
+              <a class="nav-link title2" href="#">Party beats</a>
+            </li><li class="nav-item">
+              <a class="nav-link title2" href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- main -->
+      <div class="col show">
+
+        <!-- navigation -->
+        <div class="row sticky-top navigation">
+          <ul class="col-lg-1 col-md-2 col-sm-3 nav padd disp-none">
+            <li class="nav-item col-6 justify-content-start nav-link">
+              <button type="button" class="btn btn-dark justify-content-start btnsize "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+              </svg></button>
+            </li>
+            <li class="nav-item col-6 justify-content-end nav-link">
+              <button type="button" class="btn btn-dark justify-content-end btnsize"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+              </svg></button>
+            </li>
+          </ul>
+          <ul class="col-lg-auto col-md-auto col-sm-auto col-xs-auto nav padd "></ul>
+          <ul class="col-lg-3 col-md-4 col-sm-4 col-xs-6 nav padd justify-content-end">
+            <li class="nav-item col justify-content-end">
+              <a href="https://github.com/yrs-rosh"><button type="button" class="btn btn-dark col btnsize"><img src="assets/avatar.jpg" alt="Avatar" class="avatar">&nbsp; Rosh<i class="col fas fa-caret-down down"></i></button></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- main content area -->
+
+        <div class="container firstblock">
+          <div class="fblock">
+            <h2>Good Morning</h2>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-4 tile">
+              <div class=" row block">
+                <div class="col-3 padd albart holdon"></div>
+                <div class="col title">Hold On</div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6 tile">
+              <div class=" row block">
+                <div class="col-3 padd albart AWR"></div>
+                <div class="col title">Alone With Rosh</div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-4 tile">
+              <div class=" row block">
+                <div class="col-3 padd albart BFav"></div>
+                <div class="col title">Bollywood Fav</div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-4 tile">
+              <div class=" row block">
+                <div class="col-3 padd albart BWM"></div>
+                <div class="col title">Buzz With Me</div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-4 tile">
+              <div class=" row block">
+                <div class="col-3 padd albart DWM"></div>
+                <div class="col title">Dance With Me</div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-4 tile">
+              <div class=" row block">
+                <div class="col-3 padd albart DW"></div>
+                <div class="col title">Discover Weekly</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="fblock">
+            <h2>Recently Played</h2>
+          </div>
+          <div class="row">
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/hold on.png" alt="Card image cap">
+                <div class="title">Hold On</div>
+                <div class="title2" id="singer"><a href="#">Justin Bieber</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/alone.jpg" alt="Card image cap">
+                <div class="title">Alone, Pt. II</div>
+                <div class="title2" id="singer"><a href="#">Alan Walker, Ava Max</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/chan kittan.jpg" alt="Card image cap">
+                <div class="title">Chan Kitthan</div>
+                <div class="title2" id="singer"><a href="#">Ayushman Khurana</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/intentions.jpg" alt="Card image cap">
+                <div class="title">Intentions</div>
+                <div class="title2" id="singer"><a href="#">Justin Bieber</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none1">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/astronaut.jpg" alt="Card image cap">
+                <div class="title">Astronaut in the ocean</div>
+                <div class="title2" id="singer"><a href="#">Masked Wolf</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="fblock">
+            <h2>Most Played</h2>
+          </div>
+          <div class="row">
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/alone.jpg" alt="Card image cap">
+                <div class="title">Alone, Pt. II</div>
+                <div class="title2" id="singer"><a href="#">Alan Walker, Ava Max</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/spectre.png" alt="Card image cap">
+                <div class="title">The Spectre</div>
+                <div class="title2" id="singer"><a href="#">Alan Walker</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/hold on.png" alt="Card image cap">
+                <div class="title">Hold On</div>
+                <div class="title2" id="singer"><a href="#">Justin Bieber</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/astronaut.jpg" alt="Card image cap">
+                <div class="title">Astronaut in the ocean</div>
+                <div class="title2" id="singer"><a href="#">Masked Wolf</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none1">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/intentions.jpg" alt="Card image cap">
+                <div class="title">Intentions</div>
+                <div class="title2" id="singer"><a href="#">Justin Bieber</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="fblock">
+            <h2>Top Podcasts</h2>
+          </div>
+          <div class="row">
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/Ranveer.jpg" alt="Card image cap">
+                <div class="title">The Ranveer show</div>
+                <div class="title2" id="singer"><a href="#">BeerBiceps aka Ranveer Allahabadia</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/wtf.jpg" alt="Card image cap">
+                <div class="title">WTF With Marc Maron</div>
+                <div class="title2" id="singer"><a href="#">Marc Maron</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/murder.png" alt="Card image cap">
+                <div class="title">My Favorite Murder</div>
+                <div class="title2" id="singer"> <a href="#">Karen Kilgariff, Georgia Hardstark</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/bb.jpg" alt="Card image cap">
+                <div class="title">Bhaskar Bose</div>
+                <div class="title2" id="singer"><a href="#">spotify studios</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none1">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/This is love.png" alt="Card image cap">
+                <div class="title">This is Love</div>
+                <div class="title2" id="singer"><a href="#">Phoebe Judge</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="fblock">
+            <h2>Your Playlists</h2>
+          </div>
+          <div class="row">
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/BWM.png" alt="Card image cap">
+                <div class="title">Buzz With Me</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/BFav.png" alt="Card image cap">
+                <div class="title">Bollywood's Fav</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/DWM.png" alt="Card image cap">
+                <div class="title">Dance With Me</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/AWR.png" alt="Card image cap">
+                <div class="title">Alone With Rosh</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none1">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/WB.png" alt="Card image cap">
+                <div class="title">Wedding Beats</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="fblock">
+            <h2>Artists you Follow</h2>
+          </div>
+          <div class="row">
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj round" src="assets/AW.jpg" alt="Card image cap">
+                <div class="title">Alan Walker</div>
+                <div class="title2" id="singer"><a href="#">Artist</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj round" src="assets/ayush.jpg" alt="Card image cap">
+                <div class="title">Ayushman Khurana</div>
+                <div class="title2" id="singer"><a href="#">Artist</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj round" src="assets/CS.jpg" alt="Card image cap">
+                <div class="title">The Chain smokers</div>
+                <div class="title2" id="singer"><a href="#">Artist</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj round" src="assets/JB.jpg" alt="Card image cap">
+                <div class="title">Justin Bieber</div>
+                <div class="title2" id="singer"><a href="#">Artist</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none1">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj round" src="assets/atif.jpg" alt="Card image cap">
+                <div class="title">Atif Aslam</div>
+                <div class="title2" id="singer"><a href="#">Artist</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="fblock">
+            <h2>Your Playlists</h2>
+          </div>
+          <div class="row">
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/BWM.png" alt="Card image cap">
+                <div class="title">Buzz With Me</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/BFav.png" alt="Card image cap">
+                <div class="title">Bollywood's Fav</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/DWM.png" alt="Card image cap">
+                <div class="title">Dance With Me</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none2">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/AWR.png" alt="Card image cap">
+                <div class="title">Alone With Rosh</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+            <div class="col tile2 disp-none1">
+              <div class="card block" style="width: 100%;">
+                <img class="card-img-top card-adj" src="assets/WB.png" alt="Card image cap">
+                <div class="title">Wedding Beats</div>
+                <div class="title2" id="singer"><a href="#">By Rosh</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+
+    </div>
+    <div class="player">
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+  </body>
+</html>
